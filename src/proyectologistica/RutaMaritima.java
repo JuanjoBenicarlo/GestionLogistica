@@ -53,4 +53,7 @@ public class RutaMaritima extends Ruta {
         this.ciudadDestino = ciudadDest;
     }
     
+    protected String nombreBarco (){
+        return this.nombreBarco;
+    }
 }
