@@ -5,7 +5,11 @@
 package proyectologistica;
 
 /**
- *
+ * La clase Ruta la hago abstracta porque no tiene 
+ * sentido que cree objetos de ella ni que defina su implementacion
+ * Simplemente la he hecho porque agrupa cosas comunes de las distintas
+ * rutas, (terrestres, aéreas y marítimas), que son las que si que pueden ocurrir
+ * en la realidad
  * @author sorli
  */
 public abstract class Ruta {
@@ -33,4 +37,8 @@ public abstract class Ruta {
     protected abstract void setCOrg(String ciudadOrg);
     
     protected abstract void setCDest(String ciudadDest);
+    
+    protected abstract void setPOrg(String paisOrg);
+    
+    protected abstract void setPDest(String paisDest);
 }

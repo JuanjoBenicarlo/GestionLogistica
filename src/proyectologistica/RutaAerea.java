@@ -24,6 +24,7 @@ public class RutaAerea extends Ruta {
     protected RutaAerea(String ciudadOrg, String ciudadDest, String paisOrg, String paisDest){
         super(ciudadOrg, ciudadDest, paisOrg, paisDest); 
     }
+    
     protected void setCOrg(String ciudadOrg){
         this.ciudadOrigen = ciudadOrg;
     }
@@ -31,4 +32,21 @@ public class RutaAerea extends Ruta {
     protected void setCDest(String ciudadDest){
         this.ciudadDestino = ciudadDest;
     }
+    
+    protected void setPOrg(String paisOrg) {
+        this.paisOrigen = paisOrg;
+    }
+
+    protected String getPOrg(){
+        return this.paisOrigen;
+    }
+
+    protected void setPDest(String paisDest) {
+        this.paisDestino = paisDest;
+    }
+    
+    protected String getPDest(){
+        return this.paisDestino;
+    }
+    
 }
