@@ -9,11 +9,30 @@ package proyectologistica;
  * @author sorli
  */
 public class Facturacion extends Operacion {
-    protected String divisa;
-    protected boolean exWorks;
+    private String divisa;
+    private boolean exWorks;
     
+    //En el constructor de Facturacion llamo al constructor
+    //de su Superclase
     public Facturacion (){
         super();
     }
     
+    //Para favorecer encapsulamiento y modularidad
+    //hago metodos que me permitan acceder a los 
+    //atributos privados
+    //La visibilidad de estos metodos sera a nivel de todo el paquete
+    
+    protected void setexWorks (boolean parametro){
+        this.exWorks = parametro;
+    }
+    protected boolean getexWorks(){
+        return this.exWorks;
+    }
+    protected void setDivisa (String parametro){
+        this.divisa = parametro;
+    }
+    protected String getDivisa(){
+        return this.divisa;
+    }
 }
