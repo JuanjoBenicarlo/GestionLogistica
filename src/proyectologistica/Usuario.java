@@ -4,6 +4,9 @@
  */
 package proyectologistica;
 
+
+import java.sql.ResultSet;
+
 /**
  * Clase abstracta que no implementa ningun metodo ya que, de ella
  * heredaran distintos tipos de usuario que implementaran de diferente
@@ -12,24 +15,67 @@ package proyectologistica;
  * @author sorli
  */
 public abstract class Usuario {
+    protected int id;
     protected String DNI;
     protected String password;
-    protected String tfno;
+    protected String rol;
     
     //Constructor de la clase Usuario
-    protected Usuario (String dni, String pwd, String tfn){
+    protected Usuario (int pkid, String dni, String pwd, String rol){
+        this.id = pkid;
         this.DNI = dni;
         this.password = pwd;
-        this.tfno = tfn;
+        this.rol = rol;
+    }
+    protected String insertar() {
+        Conexion conexion = new Conexion();
+        UsuarioDAO usuarioDAO = new UsuarioDAO(this.id, this.DNI, 
+        this.password, this.rol);
+        return conexion.ejecutar(usuarioDAO.insertar()); 
     }
     
-    //Para favorecer encapsulado habilito metodos para acceder a atributos privados y setearlos
-    protected abstract String getTfno ();
+    protected ResultSet consultar(int pkidUsuario){
+        Conexion conexion = new Conexion();
+        UsuarioDAO usuarioDAO = new UsuarioDAO(this.id, this.DNI, 
+        this.password, this.rol);
+        return conexion.consultar(usuarioDAO.consultar(pkidUsuario));  
+    }
     
-    //Sobrecargo el metodo con diferentes implementaciones en funcion del parametro que le pase
-    protected abstract String getTfno (String dni);
+    protected ResultSet consultarPorLogin(String login){
+        Conexion conexion = new Conexion();
+        UsuarioDAO usuarioDAO = new UsuarioDAO(this.id, this.DNI, 
+        this.password, this.rol);
+        return conexion.consultar(usuarioDAO.consultar(login));  
+    }
+
+    protected String eliminar() {
+        Conexion conexion = new Conexion();
+        UsuarioDAO usuarioDAO = new UsuarioDAO(this.DNI);
+        return conexion.ejecutar(usuarioDAO.eliminar()); 
+    }
     
-    protected abstract void setTfno (String tfn);
+    protected ResultSet retornaTodo(){
+        Conexion conexion = new Conexion();
+        UsuarioDAO usuarioDAO = new UsuarioDAO(this);
+        return conexion.consultar(usuarioDAO.retornaTodo()); 
+    }
+    
+    protected int getId (){
+        return this.id;
+    }
+    
+    protected String getDNI (){
+        return this.DNI;
+    }
+    
+    protected String getPwd (){
+        return this.password;
+    }
+    
+    protected String getRol(){
+        return this.rol;
+    }
+
     
     //Metodo abstracto en la clase abstracta Usuario me permitira, segun permisos consultar Operacion
     protected abstract void consultaOperacion(String idOperacion);

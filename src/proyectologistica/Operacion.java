@@ -4,6 +4,7 @@
  */
 package proyectologistica;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,11 @@ public class Operacion {
     //Una operacion puede tener muchas rutas asociadas
     //Ruta es una clase abstracta de la que heredan las rutas segun
     //sean terrestres, aereas o maritimas
-    List <Ruta> listaRuta = new ArrayList <>();
+    protected List <Ruta> listaRuta = new ArrayList <>();
+    
+
+    protected int idOperacion;
+    protected float coste;
     
     //Constructor
     public Operacion(){
@@ -31,5 +36,23 @@ public class Operacion {
     protected void anadeRuta(Ruta ruta){
         listaRuta.add(ruta);
     }
+    /*
+    protected String insertar() {
+        Conexion conexion = new Conexion();
+        OperacionDAO operacionDAO = new OperacionDAO(this.idOperacion, this.coste);
+        return conexion.ejecutar(operacionDAO.insertar()); 
+    }
+*/
     
+    protected ResultSet consultarRutaPorOperacion(int pkidOp){
+        Conexion conexion = new Conexion();
+        OperacionDAO operacionDAO = new OperacionDAO();
+        return conexion.consultar(operacionDAO.consultarRutaForeignKeyOp(pkidOp));  
+    }
+    
+    protected ResultSet consultarTodo(){
+        Conexion conexion = new Conexion();
+        OperacionDAO operacionDAO = new OperacionDAO();
+        return conexion.consultar(operacionDAO.retornaTodo());
+    }
 }
