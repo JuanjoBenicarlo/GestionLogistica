@@ -53,6 +53,10 @@ public class Main extends JFrame {
     
     private JTextField insertarLogin = null;
     private JTextField insertarPassword = null;
+    
+    private JTextField nombreBarco = null;
+    private JTextField companiaAerea = null;
+    
 
     //Variable global a los metodos de la clase para que todos sepan el rol y sus privilegios
     //0 no logado, (valos por defecto)
@@ -62,6 +66,10 @@ public class Main extends JFrame {
     
     //Actualizable mediante los radiobutton
     private int usuarioAAnadir = 0;
+    
+    //Tipo de transporte que quiero anadir
+    //0 terrestre, 1 marítimo y 2 aéreo
+    private int tipoTransporte = 1;
 
     Conexion conexion_prueba;
     
@@ -137,7 +145,10 @@ public class Main extends JFrame {
                 panel2 = new JPanel();
                 //panelPestanas.addTab("Pestaña 2", new ImageIcon(“img/informacion.png”), panel2); 
                 panelPestanas.addTab("Insertar tráfico", panel2);
-
+                
+                nombreBarco = new JTextField("Nombre del Barco");
+                companiaAerea = new JTextField("Compañía Aérea");
+                
                 JButton boton3 = new JButton("Introducir nuevo transporte");
 
                 boton3.addActionListener(new ActionListener() {
@@ -148,9 +159,25 @@ public class Main extends JFrame {
                 });
 
                 JRadioButton radioBoton1 = new JRadioButton("Transporte Terrestre");
-                JRadioButton radioBoton2 = new JRadioButton("Transporte Aéreo");
-                JRadioButton radioBoton3 = new JRadioButton("Transporte Marítimo");
-
+                JRadioButton radioBoton2 = new JRadioButton("Transporte Marítimo");
+                JRadioButton radioBoton3 = new JRadioButton("Transporte Aéreo");
+                
+                radioBoton1.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        botonAnadirTteTerrestre(evt);
+                    }
+                });
+                radioBoton2.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        botonAnadirTteMaritimo(evt);
+                    }
+                });
+                radioBoton3.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        botonAnadirTteAereo(evt);
+                    }
+                });
+                
                 //Los vinculo a un ButtonGroup para que sólo pueda haber uno seleccionado
                 ButtonGroup grupoRadioBoton = new ButtonGroup();
                 grupoRadioBoton.add(radioBoton1);
@@ -160,6 +187,14 @@ public class Main extends JFrame {
                 panel2.add(radioBoton1);
                 panel2.add(radioBoton2);
                 panel2.add(radioBoton3);
+                
+                switch (tipoTransporte){
+                    case 1:
+                        panel2.add(nombreBarco);
+                    case 2:
+                        panel2.add(companiaAerea);
+                    default:
+                }
 
                 panel2.add(boton3);
 
@@ -282,25 +317,17 @@ public class Main extends JFrame {
         //queryLista = usuario.consultar(42);
         queryLista = operacion.consultarTodo();
 
-        try {
-
-            while (queryLista.next()) {
-
-                System.out.println(queryLista.getString("idOperacion"));
-                System.out.println(queryLista.getString("coste"));
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        ListaOperaciones lista = new ListaOperaciones(queryLista);
+        lista.initGUI();
 
     }
 
     private void botonIntroducirTransporteActionPerformed(ActionEvent evt) {
         //Código para el evento
-        System.out.println("Me han presionado el botón para buscar una idOperacion concreta");
-        System.out.println(conexion_prueba.ejecutar("insert into usuario (idusuario,login,password,rol)values ('53223','chipie','chipiron','admin')"));
+        System.out.println("Me han presionado el botón para insertar una nueva operacion");
+        //System.out.println(conexion_prueba.ejecutar("insert into usuario (idusuario,login,password,rol)values ('53223','chipie','chipiron','admin')"));
+        
     }
     private void botonAnadirUsuario(ActionEvent evt) {
         //Código para el evento
@@ -311,6 +338,22 @@ public class Main extends JFrame {
         //Código para el evento
         System.out.println("Me han presionado el botón para buscar una idOperacion concreta");
         usuarioAAnadir = 2;
+    }
+    
+    private void botonAnadirTteTerrestre(ActionEvent evt) {
+        //Código para el evento
+        System.out.println("Me han presionado el botón para Tte Terrestre");
+        tipoTransporte = 0;
+    }
+    private void botonAnadirTteMaritimo(ActionEvent evt) {
+        //Código para el evento
+        System.out.println("Me han presionado el botón para Tte Maritimo");
+        tipoTransporte = 1;
+    }
+    private void botonAnadirTteAereo(ActionEvent evt) {
+        //Código para el evento
+        System.out.println("Me han presionado el botón para Tte Aereo");
+        tipoTransporte = 2;
     }
     private void botonAnadirUsuarioActionPerformed(ActionEvent evt) {
         
