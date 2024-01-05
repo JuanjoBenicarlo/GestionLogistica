@@ -325,7 +325,7 @@ public class Main extends JFrame {
 
     private void botonIntroducirTransporteActionPerformed(ActionEvent evt) {
         //Codigo para el evento
-    	Ruta ruta = new RutaAerea("benicarlo","calig","Espana","Espana",18);
+    	Ruta ruta = new RutaAerea("Tomelloso","New York","Espana","USA",2);
     	ruta.insertar();
         System.out.println("Me han presionado el boton para insertar una nueva operacion");
         //System.out.println(conexion_prueba.ejecutar("insert into usuario (idusuario,login,password,rol)values ('53223','chipie','chipiron','admin')"));

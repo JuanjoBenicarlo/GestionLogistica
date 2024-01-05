@@ -1,7 +1,7 @@
 package proyectologistica;
 
 public class RutaDAO {
-	protected String ciudadOrigen;
+    protected String ciudadOrigen;
     protected String ciudadDestino;
     protected String paisOrigen;
     protected String paisDestino;
@@ -16,7 +16,7 @@ public class RutaDAO {
 	this.ciudadDestino = ruta.ciudadDestino;
 	this.paisOrigen = ruta.paisOrigen;
 	this.paisDestino = ruta.paisDestino;
-		
+        this.idOp = ruta.idOp;
 	}
 	public RutaDAO(int op) {
 		this.idOp = op;
@@ -31,7 +31,8 @@ public class RutaDAO {
 		
 	}
 	public String insertar(){
-		return "insert into ruta (ciudadOrigen, ciudadDestino, paisOrigen, paisDestino, idOp) values ('"+this.ciudadOrigen+"','"+this.ciudadDestino+"','"+this.paisOrigen+"','"+this.paisDestino+"','"+this.idOp+"')";
-	}
+                return "insert into ruta (ciudadOrigen, ciudadDestino, paisOrigen, paisDestino, idOperacion) values ('"+this.ciudadOrigen+"','"+this.ciudadDestino+"','"+this.paisOrigen+"','"+this.paisDestino+"','"+this.idOp+"')";
+	
+        }
 
 }
