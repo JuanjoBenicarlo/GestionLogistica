@@ -28,6 +28,12 @@ public class UsuarioDAO {
         this.rol = rol;
         this.id = id;
     }
+    public UsuarioDAO (String dni, String pwd, String rol){
+        this.DNI = dni;
+        this.password = pwd;
+        this.rol = rol;
+        
+    }
     public UsuarioDAO (String dni){
         this.DNI = dni;
     }

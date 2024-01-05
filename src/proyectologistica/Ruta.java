@@ -17,6 +17,7 @@ public abstract class Ruta {
     protected String ciudadDestino;
     protected String paisOrigen;
     protected String paisDestino;
+    protected int idOp;
     
     protected Ruta(){
         
@@ -27,11 +28,24 @@ public abstract class Ruta {
         this.paisOrigen = paisOrg;
         this.paisDestino = paisDest;
     }
+    protected Ruta (String ciudadOrg, String ciudadDest, String paisOrg, String paisDest, int op){
+        this.ciudadOrigen = ciudadOrg;
+        this.ciudadDestino = ciudadDest;
+        this.paisOrigen = paisOrg;
+        this.paisDestino = paisDest;
+        this.idOp = op;
+    }
     protected void estableceRuta(String ciudadOrg, String ciudadDest, String paisOrg, String paisDest) {
         this.ciudadOrigen = ciudadOrg;
         this.ciudadDestino = ciudadDest;
         this.paisOrigen = paisOrg;
         this.paisDestino = paisDest;
+    }
+    
+    protected String insertar() {
+        Conexion conexion = new Conexion();
+        RutaDAO rutaDAO = new RutaDAO(this);
+        return conexion.ejecutar(rutaDAO.insertar()); 
     }
     
     protected abstract void setCOrg(String ciudadOrg);

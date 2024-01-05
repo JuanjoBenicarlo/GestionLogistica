@@ -27,10 +27,15 @@ public abstract class Usuario {
         this.password = pwd;
         this.rol = rol;
     }
+  //Constructor de la clase Usuario
+    protected Usuario (String dni, String pwd, String rol){
+        this.DNI = dni;
+        this.password = pwd;
+        this.rol = rol;
+    }
     protected String insertar() {
         Conexion conexion = new Conexion();
-        UsuarioDAO usuarioDAO = new UsuarioDAO(this.id, this.DNI, 
-        this.password, this.rol);
+        UsuarioDAO usuarioDAO = new UsuarioDAO(this.DNI, this.password, this.rol);
         return conexion.ejecutar(usuarioDAO.insertar()); 
     }
     

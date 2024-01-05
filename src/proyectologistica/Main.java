@@ -106,15 +106,15 @@ public class Main extends JFrame {
         //System.out.println(conexion_prueba.ejecutar(accesoUsuarioBDD.insertar()));
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        setTitle("Mi Aplicación para Proyecto Logística");
+        setTitle("Mi Aplicacion para Proyecto Logistica");
         {
             panelPestanas = new JTabbedPane();
             getContentPane().add(panelPestanas);
             {
                 panel1 = new JPanel();
-                panelPestanas.addTab("Consultar tráfico", panel1);
+                panelPestanas.addTab("Consultar trafico", panel1);
 
-                idOperacionConsultar = new JTextField("Identificador de Operación");
+                idOperacionConsultar = new JTextField("Identificador de Operacion");
 
                 JButton boton1 = new JButton("Consultar Operacion");
                 JButton boton2 = new JButton("Lista Operaciones");
@@ -143,11 +143,11 @@ public class Main extends JFrame {
             }
             {
                 panel2 = new JPanel();
-                //panelPestanas.addTab("Pestaña 2", new ImageIcon(“img/informacion.png”), panel2); 
-                panelPestanas.addTab("Insertar tráfico", panel2);
+                //panelPestanas.addTab("Pestana 2", new ImageIcon(img/informacion.png), panel2); 
+                panelPestanas.addTab("Insertar trafico", panel2);
                 
                 nombreBarco = new JTextField("Nombre del Barco");
-                companiaAerea = new JTextField("Compañía Aérea");
+                companiaAerea = new JTextField("Compania aerea");
                 
                 JButton boton3 = new JButton("Introducir nuevo transporte");
 
@@ -159,8 +159,8 @@ public class Main extends JFrame {
                 });
 
                 JRadioButton radioBoton1 = new JRadioButton("Transporte Terrestre");
-                JRadioButton radioBoton2 = new JRadioButton("Transporte Marítimo");
-                JRadioButton radioBoton3 = new JRadioButton("Transporte Aéreo");
+                JRadioButton radioBoton2 = new JRadioButton("Transporte Maritimo");
+                JRadioButton radioBoton3 = new JRadioButton("Transporte Aereo");
                 
                 radioBoton1.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
@@ -203,12 +203,12 @@ public class Main extends JFrame {
             {
                 panel3 = new JPanel();
 
-                panelPestanas.addTab("Gestión de Usuarios", panel3);
+                panelPestanas.addTab("Gestion de Usuarios", panel3);
                 //FlowLayout personalizacionLayoutTab3 = new FlowLayout();
                 //getContentPane().setLayout(personalizacionLayoutTab3);
 
 
-                JButton boton4 = new JButton("añadir nuevo usuario");
+                JButton boton4 = new JButton("anadir nuevo usuario");
 
                 boton4.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
@@ -272,7 +272,7 @@ public class Main extends JFrame {
         FileWriter escritorFactura = null; 
         
 
-        System.out.println("Me han presionado el botón para buscar una idOperacion concreta");
+        System.out.println("Me han presionado el boton para buscar una idOperacion concreta");
         
         
         ResultSet queryLista;
@@ -311,8 +311,8 @@ public class Main extends JFrame {
     }
 
     private void botonConsultarTodoActionPerformed(ActionEvent evt) {
-        //Código para el evento
-        System.out.println("Me han presionado el botón para hacer una query de todo lo que tenga");
+        //Codigo para el evento
+        System.out.println("Me han presionado el boton para hacer una query de todo lo que tenga");
         ResultSet queryLista;
         //queryLista = usuario.consultar(42);
         queryLista = operacion.consultarTodo();
@@ -324,19 +324,21 @@ public class Main extends JFrame {
     }
 
     private void botonIntroducirTransporteActionPerformed(ActionEvent evt) {
-        //Código para el evento
-        System.out.println("Me han presionado el botón para insertar una nueva operacion");
+        //Codigo para el evento
+    	Ruta ruta = new RutaAerea("benicarlo","calig","Espana","Espana",18);
+    	ruta.insertar();
+        System.out.println("Me han presionado el boton para insertar una nueva operacion");
         //System.out.println(conexion_prueba.ejecutar("insert into usuario (idusuario,login,password,rol)values ('53223','chipie','chipiron','admin')"));
         
     }
     private void botonAnadirUsuario(ActionEvent evt) {
         //Código para el evento
-        System.out.println("Me han presionado el botón para buscar una idOperacion concreta");
+        System.out.println("Me han presionado el boton para buscar una idOperacion concreta");
         usuarioAAnadir = 1;
     }
     private void botonAnadirAdmin(ActionEvent evt) {
         //Código para el evento
-        System.out.println("Me han presionado el botón para buscar una idOperacion concreta");
+        System.out.println("Me han presionado el boton para buscar una idOperacion concreta");
         usuarioAAnadir = 2;
     }
     
@@ -356,11 +358,14 @@ public class Main extends JFrame {
         tipoTransporte = 2;
     }
     private void botonAnadirUsuarioActionPerformed(ActionEvent evt) {
+        Usuario usuario;
         
-        System.out.println("Me han presionado el botón para buscar una idOperacion concreta");
+        
         if (usuarioAAnadir == 2){
             if (rolPrivilegios == 2){
-            System.out.println(conexion_prueba.ejecutar("insert into usuario (login,password,rol)values ('"+insertarLogin.getText()+" ','"+insertarPassword.getText()+"','admin')"));
+            	usuario = new Administrador (insertarLogin.getText(),insertarPassword.getText());
+            	usuario.insertar();
+            	//System.out.println(conexion_prueba.ejecutar(user.insertar()));
             }
             else{
                 //Sacar un warning
@@ -368,8 +373,11 @@ public class Main extends JFrame {
                 System.out.println("lo siento. No tienes privilegios para crear Administrador");
             }
         }
-        else if (usuarioAAnadir == 1)
-            System.out.println(conexion_prueba.ejecutar("insert into usuario (login,password,rol)values ('"+insertarLogin.getText()+" ','"+insertarPassword.getText()+"','user')"));
+        else if (usuarioAAnadir == 1) {
+        	usuario = new Consultor (insertarLogin.getText(),insertarPassword.getText());
+        	usuario.insertar();
+        }
+            //System.out.println(conexion_prueba.ejecutar("insert into usuario (login,password,rol)values ('"+insertarLogin.getText()+" ','"+insertarPassword.getText()+"','user')"));
     }
 
     private void botonAutenticarseAsignarRol(ActionEvent evt) {

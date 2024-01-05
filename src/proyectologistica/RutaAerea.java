@@ -25,6 +25,10 @@ public class RutaAerea extends Ruta {
         super(ciudadOrg, ciudadDest, paisOrg, paisDest); 
     }
     
+    protected RutaAerea(String ciudadOrg, String ciudadDest, String paisOrg, String paisDest, int op){
+        super(ciudadOrg, ciudadDest, paisOrg, paisDest, op); 
+    }
+    
     protected void setCOrg(String ciudadOrg){
         this.ciudadOrigen = ciudadOrg;
     }
