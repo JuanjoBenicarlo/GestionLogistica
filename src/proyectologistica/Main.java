@@ -5,8 +5,6 @@
 package proyectologistica;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
@@ -17,7 +15,6 @@ import javax.swing.WindowConstants;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -54,9 +51,6 @@ public class Main extends JFrame {
     private JTextField insertarLogin = null;
     private JTextField insertarPassword = null;
     
-    private JTextField nombreBarco = null;
-    private JTextField companiaAerea = null;
-    
 
     //Variable global a los metodos de la clase para que todos sepan el rol y sus privilegios
     //0 no logado, (valos por defecto)
@@ -75,10 +69,10 @@ public class Main extends JFrame {
     
     //Me creo objetos para acceder a la BDD
     Usuario usuario = new Administrador(77, "772", "hh", "676");
-    UsuarioDAO accesoUsuarioBDD = new UsuarioDAO(usuario);
+
     
     Operacion operacion = new Operacion();
-    OperacionDAO accesoOperacionBDD = new OperacionDAO();
+
 
     public static void main(String[] args) {
         Main marcoAplicacion = new Main();
@@ -145,10 +139,7 @@ public class Main extends JFrame {
                 panel2 = new JPanel();
                 //panelPestanas.addTab("Pestana 2", new ImageIcon(img/informacion.png), panel2); 
                 panelPestanas.addTab("Insertar trafico", panel2);
-                
-                nombreBarco = new JTextField("Nombre del Barco");
-                companiaAerea = new JTextField("Compania aerea");
-                
+
                 JButton boton3 = new JButton("Introducir nuevo transporte");
 
                 boton3.addActionListener(new ActionListener() {
@@ -187,14 +178,6 @@ public class Main extends JFrame {
                 panel2.add(radioBoton1);
                 panel2.add(radioBoton2);
                 panel2.add(radioBoton3);
-                
-                switch (tipoTransporte){
-                    case 1:
-                        panel2.add(nombreBarco);
-                    case 2:
-                        panel2.add(companiaAerea);
-                    default:
-                }
 
                 panel2.add(boton3);
 
@@ -204,9 +187,6 @@ public class Main extends JFrame {
                 panel3 = new JPanel();
 
                 panelPestanas.addTab("Gestion de Usuarios", panel3);
-                //FlowLayout personalizacionLayoutTab3 = new FlowLayout();
-                //getContentPane().setLayout(personalizacionLayoutTab3);
-
 
                 JButton boton4 = new JButton("anadir nuevo usuario");
 
@@ -328,8 +308,30 @@ public class Main extends JFrame {
     	Ruta ruta = new RutaAerea("Tomelloso","New York","Espana","USA",2);
     	ruta.insertar();
         System.out.println("Me han presionado el boton para insertar una nueva operacion");
-        //System.out.println(conexion_prueba.ejecutar("insert into usuario (idusuario,login,password,rol)values ('53223','chipie','chipiron','admin')"));
         
+        InsertarTransporte insertoTransporte;
+        
+        ResultSet queryLista;
+        //queryLista = usuario.consultar(42);
+        queryLista = operacion.consultarTodo();
+        
+        switch (tipoTransporte){
+            case 0:
+                insertoTransporte = new InsertarTransporteTerrestre(queryLista);
+                insertoTransporte.initGUI();
+                break;
+            case 1:
+                insertoTransporte = new InsertarTransporteMaritimo(queryLista);
+                insertoTransporte.initGUI();
+                break;
+            default:
+                insertoTransporte = new InsertarTransporteAereo(queryLista);
+                insertoTransporte.initGUI();
+                break;
+        }
+
+        
+      
     }
     private void botonAnadirUsuario(ActionEvent evt) {
         //Código para el evento
