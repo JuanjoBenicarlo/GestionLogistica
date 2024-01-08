@@ -15,12 +15,14 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.JTextField;
 /**
  *
  * @author sorli
  */
 public class InsertarTransporte extends JFrame {
-    private JComboBox operaciones;
+    protected JComboBox operaciones;
+    protected JTextField ciudadOrigen, ciudadDestino, paisOrigen, paisDestino;
     //private JList lista2;
     final ResultSet listaValores;
     
@@ -33,7 +35,7 @@ public class InsertarTransporte extends JFrame {
     public void initGUI() {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        setTitle("Lista Operaciones");
+        setTitle("Insertar Transporte");
         getContentPane().setLayout(null);
         {
             operaciones = new JComboBox();
@@ -52,6 +54,18 @@ public class InsertarTransporte extends JFrame {
             operaciones.setModel(modeloLista);
             getContentPane().add(operaciones);
             operaciones.setBounds(10, 30, 380, 15);
+            ciudadOrigen = new JTextField("Escriba Ciudad Origen");
+            getContentPane().add(ciudadOrigen);
+            ciudadOrigen.setBounds(10, 80, 200, 20);
+            ciudadDestino = new JTextField("Escriba Ciudad Destino");
+            getContentPane().add(ciudadDestino);
+            ciudadDestino.setBounds(10, 110, 200, 20);
+            paisOrigen = new JTextField("Escriba Pais Origen");
+            getContentPane().add(paisOrigen);
+            paisOrigen.setBounds(10, 140, 200, 20);
+            paisDestino = new JTextField("Escriba Pais Destino");
+            getContentPane().add(paisDestino);
+            paisDestino.setBounds(10, 170, 200, 20);
         }
         setSize(440, 300);
    }
