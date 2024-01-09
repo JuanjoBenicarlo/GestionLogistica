@@ -61,20 +61,22 @@ public class InsertarTransporteMaritimo extends InsertarTransporte{
                 
    }
    private void seleccionOperacion (ActionEvent evt){
-       System.out.println("Se me ha seleccionado "+ super.operaciones.getSelectedItem());
+        System.out.println("Se me ha seleccionado "+ super.operaciones.getSelectedItem());
    }
    private void registrarActionPerformed(ActionEvent evt) {
-       int op;
-       op = Integer.parseInt((String) super.operaciones.getSelectedItem());
-       RutaMaritima ruta = new RutaMaritima(super.ciudadOrigen.getText(),super.ciudadDestino.getText(),super.paisOrigen.getText(),super.paisDestino.getText(),openTop.isSelected(), canalSuez.isSelected(), canalPanama.isSelected());
-        
-        if (super.operaciones.getSelectedIndex() < (super.operaciones.getItemCount()-1))
+        int op;
+        op = Integer.parseInt((String) super.operaciones.getSelectedItem());
+        RutaMaritima ruta = new RutaMaritima(super.ciudadOrigen.getText(),super.ciudadDestino.getText(),super.paisOrigen.getText(),super.paisDestino.getText(),openTop.isSelected(), canalSuez.isSelected(), canalPanama.isSelected());
+        Operacion operacion = new Operacion();
+                
+        if (super.operaciones.getSelectedIndex() < (super.operaciones.getItemCount()-1)){
   
             ruta.insertar(op);
-        else
-            
-            ruta.insertar();
-        
+        }
+        else{
+            operacion.insertar();
+            ruta.insertar(operacion.ultimaInsercion());
+        }
         
     }
             

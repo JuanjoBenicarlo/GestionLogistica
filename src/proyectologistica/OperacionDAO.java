@@ -38,4 +38,10 @@ public class OperacionDAO {
         return "select * from operacion";
         
     }
+    
+    public String insertar(){
+        return "insert into operacion (coste) values (0)";
+    }
+    
+ 
 }

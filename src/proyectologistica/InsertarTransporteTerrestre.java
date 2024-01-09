@@ -52,16 +52,20 @@ public class InsertarTransporteTerrestre extends InsertarTransporte{
    }
    private void registrarActionPerformed(ActionEvent evt) {
        int op;
-       op = Integer.parseInt((String) super.operaciones.getSelectedItem());
+       
        RutaTerrestre ruta = new RutaTerrestre(super.ciudadOrigen.getText(),super.ciudadDestino.getText(),super.paisOrigen.getText(),super.paisDestino.getText(),this.companiaFerroviaria.getText());
-        
-        if (super.operaciones.getSelectedIndex() < (super.operaciones.getItemCount()-1))
-  
+       Operacion operacion = new Operacion();
+       System.out.println(super.operaciones.getSelectedIndex());
+       System.out.println(super.operaciones.getItemCount()-1);
+                
+        if (super.operaciones.getSelectedIndex() < (super.operaciones.getItemCount()-1)){
+            op = Integer.parseInt((String) super.operaciones.getSelectedItem());
             ruta.insertar(op);
-        else
-            
-            ruta.insertar();
-        
+        }
+        else{
+            operacion.insertar();
+            ruta.insertar(operacion.ultimaInsercion());
+        }
         
     }
             
