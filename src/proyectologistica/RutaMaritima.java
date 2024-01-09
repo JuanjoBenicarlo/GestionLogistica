@@ -25,6 +25,13 @@ public class RutaMaritima extends Ruta {
         this.openTop = false;
     }
     
+    protected RutaMaritima(String ciudadOrg, String ciudadDest, String paisOrg, String paisDest, boolean open, boolean suez, boolean panam){
+        super(ciudadOrg, ciudadDest, paisOrg, paisDest); 
+        this.canalPanama = panam;
+        this.canalSuez = suez;
+        this.openTop = open;
+    }
+    
     //Para favorecer encapsulamiento y modularidad
     //hago metodos que me permitan acceder a los 
     //atributos privados
@@ -91,5 +98,19 @@ public class RutaMaritima extends Ruta {
     
     protected boolean getOpenTop(){
         return this.openTop;
+    }
+    
+    protected String insertar() {
+        Conexion conexion = new Conexion();
+        RutaMaritimaDAO rutaDAO = new RutaMaritimaDAO(this,this.openTop, this.canalPanama, this.canalSuez);
+        return conexion.ejecutar(rutaDAO.insertar()); 
+    }
+    protected String insertar(int op) {
+        Conexion conexion = new Conexion();
+        RutaMaritimaDAO rutaDAO = new RutaMaritimaDAO(this,this.openTop, this.canalPanama, this.canalSuez);
+        String prueba = rutaDAO.insertar(op);
+        System.out.println(prueba);
+        //return conexion.ejecutar(rutaDAO.insertar(op)); 
+        return conexion.ejecutar(prueba); 
     }
 }

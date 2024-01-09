@@ -61,7 +61,11 @@ public class RutaTerrestre extends Ruta {
     protected String insertar(int op) {
         Conexion conexion = new Conexion();
         RutaTerrestreDAO rutaDAO = new RutaTerrestreDAO(this,this.companiaFerroviaria);
-        return conexion.ejecutar(rutaDAO.insertar(op)); 
+        String prueba = rutaDAO.insertar(op);
+        System.out.println(prueba);
+        //return conexion.ejecutar(rutaDAO.insertar(op)); 
+        return conexion.ejecutar(prueba); 
+        //return conexion.ejecutar(rutaDAO.insertar(op)); 
     }
     
 }

@@ -55,7 +55,7 @@ public class InsertarTransporteTerrestre extends InsertarTransporte{
        op = Integer.parseInt((String) super.operaciones.getSelectedItem());
        RutaTerrestre ruta = new RutaTerrestre(super.ciudadOrigen.getText(),super.ciudadDestino.getText(),super.paisOrigen.getText(),super.paisDestino.getText(),this.companiaFerroviaria.getText());
         
-        if (super.operaciones.getSelectedIndex() < super.operaciones.getItemCount())
+        if (super.operaciones.getSelectedIndex() < (super.operaciones.getItemCount()-1))
   
             ruta.insertar(op);
         else
