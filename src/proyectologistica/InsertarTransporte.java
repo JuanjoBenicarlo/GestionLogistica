@@ -53,7 +53,7 @@ public class InsertarTransporte extends JFrame {
             modeloLista.addElement("Anadir la ruta sobre nueva operacion aun no existente");
             operaciones.setModel(modeloLista);
             getContentPane().add(operaciones);
-            operaciones.setBounds(10, 30, 380, 15);
+            operaciones.setBounds(10, 30, 380, 20);
             ciudadOrigen = new JTextField("Escriba Ciudad Origen");
             getContentPane().add(ciudadOrigen);
             ciudadOrigen.setBounds(10, 80, 200, 20);

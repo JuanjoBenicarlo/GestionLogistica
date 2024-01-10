@@ -43,9 +43,9 @@ public class InsertarTransporteMaritimo extends InsertarTransporte{
         getContentPane().add(canalSuez);
         getContentPane().add(canalPanama);
         
-        openTop.setBounds(10, 50, 100, 20);
-        canalSuez.setBounds(150, 50, 100, 20);
-        canalPanama.setBounds(250, 50, 100, 20);
+        openTop.setBounds(10, 52, 100, 20);
+        canalSuez.setBounds(150, 52, 100, 20);
+        canalPanama.setBounds(250, 52, 100, 20);
         
         JButton boton = new JButton("Registrar");
         getContentPane().add(boton);
@@ -65,12 +65,11 @@ public class InsertarTransporteMaritimo extends InsertarTransporte{
    }
    private void registrarActionPerformed(ActionEvent evt) {
         int op;
-        op = Integer.parseInt((String) super.operaciones.getSelectedItem());
         RutaMaritima ruta = new RutaMaritima(super.ciudadOrigen.getText(),super.ciudadDestino.getText(),super.paisOrigen.getText(),super.paisDestino.getText(),openTop.isSelected(), canalSuez.isSelected(), canalPanama.isSelected());
         Operacion operacion = new Operacion();
                 
         if (super.operaciones.getSelectedIndex() < (super.operaciones.getItemCount()-1)){
-  
+            op = Integer.parseInt((String) super.operaciones.getSelectedItem());
             ruta.insertar(op);
         }
         else{
