@@ -13,7 +13,7 @@ public class RutaAerea extends Ruta {
     protected int numeroEscalas;
     protected boolean espacioShengen;
     protected boolean bultoVertical;
-    protected boolean SistemaIzado;
+    protected boolean sistemaIzado;
     protected int numeroBultos;
     protected String operadora;
     
@@ -27,6 +27,13 @@ public class RutaAerea extends Ruta {
     
     protected RutaAerea(String ciudadOrg, String ciudadDest, String paisOrg, String paisDest, int op){
         super(ciudadOrg, ciudadDest, paisOrg, paisDest, op); 
+    }
+    
+    protected RutaAerea(String ciudadOrg, String ciudadDest, String paisOrg, String paisDest, boolean shengen, boolean vertical, boolean izado){
+        super(ciudadOrg, ciudadDest, paisOrg, paisDest); 
+        this.espacioShengen = shengen;
+        this.bultoVertical = vertical;
+        this.sistemaIzado = izado;
     }
     
     protected void setCOrg(String ciudadOrg){
@@ -51,6 +58,20 @@ public class RutaAerea extends Ruta {
     
     protected String getPDest(){
         return this.paisDestino;
+    }
+    
+    protected String insertar() {
+        Conexion conexion = new Conexion();
+        RutaAereaDAO rutaDAO = new RutaAereaDAO(this,this.espacioShengen, this.bultoVertical, this.sistemaIzado);
+        return conexion.ejecutar(rutaDAO.insertar()); 
+    }
+    protected String insertar(int op) {
+        Conexion conexion = new Conexion();
+        RutaAereaDAO rutaDAO = new RutaAereaDAO(this,this.espacioShengen, this.bultoVertical, this.sistemaIzado);
+        String prueba = rutaDAO.insertar(op);
+        System.out.println(prueba);
+        //return conexion.ejecutar(rutaDAO.insertar(op)); 
+        return conexion.ejecutar(prueba); 
     }
     
 }
