@@ -7,6 +7,8 @@ public class Consultor extends Usuario {
     public Consultor(int pk, String dni, String pwd, String tfn){
         super(pk, dni, pwd, tfn);
     }
+    
+    //Sobreescribo el constructor en función de los parametros que le pase
     public Consultor(String dni, String pwd){
         super(dni, pwd, "user");
     }

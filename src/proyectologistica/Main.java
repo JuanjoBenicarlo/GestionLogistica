@@ -269,10 +269,6 @@ public class Main extends JFrame {
             escritorFactura.write("Pais Destino\n");
             while (queryLista.next()) {
                 
-                //System.out.println(datosLeidos[contador][0]);
-                //System.out.println(queryLista.getString("paisOrigen"));
-                //System.out.println(queryLista.getString("ciudadDestino"));
-                //System.out.println(queryLista.getString("paisDestino"));
                 escritorFactura.write(queryLista.getString("ciudadOrigen")+" ");
                 escritorFactura.write(queryLista.getString("paisOrigen")+ " ");
                 escritorFactura.write(queryLista.getString("ciudadDestino")+" ");

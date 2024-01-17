@@ -22,6 +22,8 @@ public class Conexion {
     private String usuario;
     private String contra;
     
+    //Constructor de la clase Conexion
+    //Contiene todos los datos concretos para conectarme a la BDD MySQL
     public Conexion(){
         this.connection = null;
         this.statement = null;
@@ -31,6 +33,8 @@ public class Conexion {
         this.usuario ="juanjo";
         this.contra ="juanjo"; 
     }
+    
+    //Intenta establecer conexion contra la BDD
     protected void abrirConexion(){
         try {
             Class.forName(this.jdbc);
@@ -43,6 +47,11 @@ public class Conexion {
             e.printStackTrace();
         }
     }
+    
+    //Intenta abrir conexion contra la BDD y ejecuta a continuacion
+    //una operacion SQL que esta contenida en un String que le paso como parametro
+    //Ese String vendra de las clases DAO
+    //El String que me retorna sirve solo para saber si la operacion ha sido exitosa
     public String ejecutar(String sentencia){
         try {
             this.abrirConexion();
@@ -52,6 +61,11 @@ public class Conexion {
         return e.toString();}
     }
  
+    //Consulta a la base de datos con la query que le paso como parametro
+    //proveniente de las clases DAO
+    //Me retornara un ResultSet ya que utilizo esta fncion para las operaciones SQL
+    //de consulta, (del tipo SELECT FROM...)
+    
     public ResultSet consultar(String sentencia){
         ResultSet resultado=null;
         try {

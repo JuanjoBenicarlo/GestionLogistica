@@ -17,7 +17,11 @@ import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JTextField;
 /**
- *
+ * Esta clase hereda de JFrame pero es un marco  del que heredaran las clases
+ * para insercion de transporte concreto.
+ * Dichas subclases seran las que se instanciaran despues en realidad
+ * Todas ellas tienen en comun el ComboBox para seleccionar la Operacion vinculada al transporte
+ * asi como los 4 atributos comunes a todos los transportes, (ciudades y paises origen y destino)
  * @author sorli
  */
 public class InsertarTransporte extends JFrame {
